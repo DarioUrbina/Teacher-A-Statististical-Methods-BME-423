@@ -5,9 +5,8 @@
 rm(list = ls()); # clear workspace variables
 cat("\014") # it means ctrl+L. clear window
 graphics.off() # close all plots
-#DIR<-"/Users/brittanypkay/Dropbox (University of Southern California)/BME423 2019Fa/Lectures/Week 1/Student stats"; # Current directory
+#DIR<-"~/Documents/RStudio"#"/Users/brittanypkay/Dropbox (University of Southern California)/BME423 2019Fa/Lectures/Week 1/Student stats"; # Current directory
 DIR<-"C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423";
-
 setwd(DIR); # change working directory
 
 ## 2. Load library
@@ -15,13 +14,14 @@ setwd(DIR); # change working directory
 # install.packages("car")
 # install.packages("lsr")
 # install.packages("ggplot2")
+# install.packages("vioplot")
 library(psych) # function describeBy
 library(lsr)
 library(survival)
 library(ggplot2)
 library(car) # function scatterplot
 library(lattice) # function histogram
-
+library(vioplot)
 ## 3. Student data analysis
 # Heart rate/Height/Sex/Side of room/Exercise frequency/Handedness/WidthRightThumb
 DATA<-read.csv("All_Data_2020.csv", sep=",") 
@@ -64,7 +64,17 @@ boxplot(x=DATA$HR,
 #        whisklty=3,                               # line type for whisker
         ylim = c(40,140)                           # limits of axis
         )
-
+# violinplot     
+vioplot(x=DATA$HR,
+        main="Violinplots of HR for all students",     # Title
+        ylab="HR (beats/min)",                     # axis labels
+        xlab="All students",                       # axis labels
+        border="black",                            # dim the border
+        #        frame.plot=FALSE,                         # frame border Y/N
+        #        staplewex=1,                              # staple Y/N
+        #        whisklty=3,                               # line type for whisker
+        ylim = c(40,140)                           # limits of axis
+)
 # HR Results stratified by sex
 #  -descriptive stats
 describeBy(x=DATA$HR,group=DATA$Sex) # this does not give qunatiles
@@ -120,7 +130,17 @@ boxplot(x=Ma$HR,
         #        whisklty=3,                # line type for whisker
         ylim = c(40,140)                    # limits of axis
 )
-
+# violinplot     
+vioplot(x=Ma$HR,
+        main="Violinplot of HR for males",     # Title
+        ylab="HR (beats/min)",              # axis labels
+        xlab="Males",                       # axis labels
+        border="black",                     # dim the border
+        #        frame.plot=FALSE,          # frame border Y/N
+        #        staplewex=1,               # staple Y/N
+        #        whisklty=3,                # line type for whisker
+        ylim = c(40,140)                    # limits of axis
+)
 # boxplot     
 boxplot(x=Fe$HR,
         main="Boxplot of HR for females",     # Title
@@ -132,14 +152,24 @@ boxplot(x=Fe$HR,
         #        whisklty=3,                  # line type for whisker
         ylim = c(40,140)                      # limits of axis
 )
-
+# violinplot     
+vioplot(x=Fe$HR,
+        main="Violinplot of HR for females",     # Title
+        ylab="HR (beats/min)",                # axis labels
+        xlab="Females",                       # axis labels
+        border="black",                       # dim the border
+        #        frame.plot=FALSE,            # frame border Y/N
+        #        staplewex=1,                 # staple Y/N
+        #        whisklty=3,                  # line type for whisker
+        ylim = c(40,140)                      # limits of axis
+)
 # - Exploring if HR data are Normal using qqplots (qqnorm)
 qqnorm(DATA$HR)
 qqline(DATA$HR)
 
 # 5. Analysis of Width of Right Thumb
 # histogram
-hist(x = DATA$WRT,
+hist(x = DATA$WidthRightThumb,
      main="Histogram of Width of Right Thumb \n for all students",     # Title
      ylab="Frequency",                                              # axis label
      xlab="WRT (mm)",                                               # axis label
@@ -154,7 +184,7 @@ hist(x = DATA$WRT,
 )
 
 # boxplot     
-boxplot(x=DATA$WRT,
+boxplot(x=DATA$WidthRightThumb,
         main="Boxplot of Width of Right Thumb \n for all students",   # Title
         ylab="WRT (mm)",                                           # axis labels
         xlab="All students",                                       # axis labels
@@ -164,15 +194,24 @@ boxplot(x=DATA$WRT,
         #        whisklty=3,                                       # line type for whisker
         ylim = c(0,60)                                             # limits of axis
 )
-
+# violinplot     
+vioplot(x=DATA$WidthRightThumb,
+        main="Violinplot of Width of Right Thumb \n for all students",   # Title
+        ylab="WRT (mm)",                                           # axis labels
+        xlab="All students",                                       # axis labels
+        border="black",                                            # dim the border
+        #        frame.plot=FALSE,                                 # frame border Y/N
+        #        staplewex=1,                                      # staple Y/N
+        #        whisklty=3,                                       # line type for whisker
+        ylim = c(0,60)                                             # limits of axis
+)
 # - Exploring if WRT data are Normal using qqplots (qqnorm)
-qqnorm(DATA$WRT)
-qqline(DATA$WRT)
+qqnorm(DATA$WidthRightThumb)
+qqline(DATA$WidthRightThumb)
 
-# 6. boxplot for Height    
+# 6a. boxplot for Height    
 boxplot(x=DATA$Height,
         main="Boxplot of Height for all students",     # Title
-        lim=c(-1,2),ylim=c(0,1.5),                        # axis labels
         xlab="All students",                           # axis labels
         border="black",                                # dim the border
         #        frame.plot=FALSE,                     # frame border Y/N
@@ -180,12 +219,21 @@ boxplot(x=DATA$Height,
         #        whisklty=3,                           # line type for whisker
         ylim = c(50,84)                                # limits of axis
 )
-
+# 6b. violinplot for Height    
+vioplot(x=DATA$Height,
+        main="Violinplot of Height for all students",     # Title
+        xlab="All students",                           # axis labels
+        border="black",                                # dim the border
+        #        frame.plot=FALSE,                     # frame border Y/N
+        #        staplewex=1,                          # staple Y/N
+        #        whisklty=3,                           # line type for whisker
+        ylim = c(50,84)                                # limits of axis
+)
 # 7.  Bar plot/histogram for Eye Color
-p <- ggplot(data.frame(DATA$Ecolor), aes(x=DATA$Ecolor),
+p <- ggplot(data.frame(DATA$EyeColor), aes(x=DATA$EyeColor),
      #     density = 20,                                 # shading lines: 20 per inch
      #     angle = 20,                                   # angle of the shading lines is 20 degrees
-     #     border = "black",                             # colour of the borders of the bars
+     #     border = "black",                             # color of the borders of the bars
      #     col = "black",                                # color of the shading lines. gray20 is darker than gray80
      labels = TRUE,                                      # frequency labels to each bar
      
@@ -196,7 +244,7 @@ p + geom_bar() + ggtitle("Histogram of Eye Color for all students") +
 
 # 8. X-Y (scatter) plot of WRT vs Height
 #plot
-plot(y=DATA$WRT, x=DATA$Height,ylim=c(10,30),xlim=c(55,80),
+plot(y=DATA$WidthRightThumb, x=DATA$Height,ylim=c(10,30),xlim=c(55,80),
      main="Width of Rt. Thumb versus Height",     # Title
      ylab="WRT (mm)",                                                  # axis labels
      xlab="Height (inches)",                                           # axis labels

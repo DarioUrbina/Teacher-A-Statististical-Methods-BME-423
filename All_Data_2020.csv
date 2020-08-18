@@ -1,4 +1,4 @@
-﻿HR,Height,Sex,Handedness,WidthRightThumb,EyeColor
+HR,Height,Sex,Handedness,WidthRightThumb,EyeColor
 52,64.5,F,R,12,BRN
 64,68.5,M,R,21,BRN
 80,67,M,R,23,BRN
@@ -28,4 +28,4 @@
 70,70,M,R,2,BRN
 78,67,F,R,24,BLU
 81,63.5,F,R,19,HZL
-60,66,M,R,22,Other (BLK)
+60,66,M,R,22,OTH
