@@ -16,13 +16,14 @@ Y_trans<-t(Y) # transpose
 ncol(Y)# number of columns in a matrix
 nrow(Y) # the number of rows
 M<-matrix(1:6,3,2); # assign 1~6 into the elements of the matrix
+
+#[rows, columns]
 M[2,2]# Find the chosen indexed value in the matrix
-#M[2,2]<-44 #Assigning an specific value
-M[1:2,]# Find several elements from the chosen indices (first and second element from both: columns and rows)
-M[1:2,1]# Find several elements from the chosen indices (first and second elements from rows)
-M[1:2,2]# Find several elements from the chosen indices (first and second elements from rows)
-
-
+M[2,2]<-44 #Assigning an specific value
+M[1:2,]# Find several elements from the chosen indices (first and second element, all columns)
+M[1:2,1]#  (first and second element, first column)
+M[1:2,2]#  (first and second elements from second column)
+M[,2] #  (all elements from second column)
 
 
 
