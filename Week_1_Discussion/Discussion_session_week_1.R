@@ -7,8 +7,8 @@ rm(list = ls()); # clear workspace variables
 cat("\014") # it means ctrl+L. clear window
 graphics.off() # close all plots
 
-#DIR<-"~/Documents/RStudio"#"/Users/brittanypkay/Dropbox (University of Southern California)/BME423 2019Fa/Lectures/Week 1/Student stats"; # Current directory
-DIR<-"C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423";
+DIR<-"C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_1_Discussion";
+
 setwd(DIR); # change working directory
 
 ## 2. Load library
