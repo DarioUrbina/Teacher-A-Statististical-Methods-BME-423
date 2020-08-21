@@ -7,6 +7,7 @@ rm(list = ls()); # clear workspace variables
 cat("\014") # it means ctrl+L. clear window
 graphics.off() # close all plots
 
+
 DIR<-"C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_1_Discussion";
 setwd(DIR); # change working directory
 
@@ -33,8 +34,11 @@ colnames(D)<-c("COL1","COL2")# Define column names
 D #See how column names have changed!
 colnames(D)# column names 
 names(D)# column names
+
 rownames(D)# row names
+
 D$COL1# look at one field/column
+
 mypeople<-c("Bob","Joanne","Sally","Tim","Neal")# string array
 typeof(D)
 mean(D$COL1)
@@ -56,11 +60,12 @@ dfa  # Matrix of one data type
 
 
 ## 2. Load library
-# install.packages("psych")
-# install.packages("car")
+install.packages("psych")
+install.packages("car")
 # install.packages("lsr")
 # install.packages("ggplot2")
 # install.packages("vioplot")
+
 library(psych) # function describeBy
 library(lsr)
 library(survival)
