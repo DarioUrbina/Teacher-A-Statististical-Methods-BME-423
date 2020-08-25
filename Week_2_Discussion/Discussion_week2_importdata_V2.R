@@ -68,7 +68,7 @@ load("mypet.RData")
 
 rm(list = ls()); 
 cat("\014")
-setwd("~/Documents/RStudio/BME423_2020/Week2/")
+setwd("C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion")
 #Error if the file location is not specified, you can either setwd or define the pathname
 mydata<-read.csv("All_Data_2020.csv",sep="\t", header=TRUE) 
 write.table(mydata, "mydata.txt", sep="\t") 
@@ -78,11 +78,11 @@ write.table(mydata, "mydata.txt", sep="\t")
 #Use pathname
 rm(list = ls()); 
 cat("\014")
-mypath <- "~/Documents/RStudio/BME423_2020/Week2/All_Data_2020.csv"
+mypath <- "C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion/All_Data_2020.csv"
 mydata <- read.csv(mypath,header=TRUE); 
 View(mydata)
 cat("\014")
-savepath <- "~/Documents/RStudio/BME423_2020/Week2//Write_All_Data_2020.csv"
+savepath <- "C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion/All_Data_2020.csv"
 write.table(mydata, savepath, sep="\t") 
 
 
