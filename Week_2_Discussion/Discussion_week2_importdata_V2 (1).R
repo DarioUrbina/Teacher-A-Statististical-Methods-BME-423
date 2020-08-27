@@ -35,7 +35,14 @@ months[sales.indexing]           #Show only the months that correspond to the in
 sales.by.month[match("Apr", months)]
 
 #Option 2:
-sales.by.month[months==April]
+sales.by.month[months=="Apr"]
+
+
+##                              in-class exercise (2/2)
+
+months.sales.high <- months[sales.by.month>=100]
+months.sales.high
+
 
 ##                              in-class exercise
 
