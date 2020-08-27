@@ -80,14 +80,13 @@ load("mypet.RData")
 
 rm(list = ls()); 
 cat("\014")
-setwd("C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion/testing")
-#setwd("C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423")
+setwd("C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion")
+
 #Error if the file location is not specified, you can either setwd or define the pathname
 
-#DUM: gives problems:
 mydata<-read.csv("All_Data_2020_0827.csv",sep=",", header=TRUE) 
 
-#DUM (a correction):
+#DUM (an option):
 #mydata<-read.csv("All_Data_2020.csv",sep=",")
 
 write.table(mydata, "mydata.txt", sep="\t") 
@@ -98,11 +97,11 @@ write.table(mydata, "mydata.txt", sep="\t")
 
 rm(list = ls()); 
 cat("\014")
-mypath <- "C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion/testing/All_Data_2020_0827.csv"
+mypath <- "C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion/All_Data_2020_0827.csv"
 mydata <- read.csv(mypath,header=TRUE);
 View(mydata)
 cat("\014")
-savepath <- "C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion/testing/All_Data_2020_new.csv"
+savepath <- "C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion/All_Data_2020_new.csv"
 write.table(mydata, savepath, sep="\t") 
 
 
