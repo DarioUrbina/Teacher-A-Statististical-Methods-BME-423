@@ -60,9 +60,9 @@ dfa  # Matrix of one data type
 
 
 ## 2. Load library
-install.packages("psych")
-install.packages("car")
-install.packages("dplyr")
+#install.packages("psych")
+#install.packages("car")
+#install.packages("dplyr")
 # install.packages("lsr")
 # install.packages("ggplot2")
 # install.packages("vioplot")
@@ -76,3 +76,4 @@ library(lattice) # function histogram
 library(vioplot)
 ## 3. Student data analysis
 # Heart rate/Height/Sex/Side of room/Exercise frequency/Handedness/WidthRightThumb
+savehistory('test_2.txt')

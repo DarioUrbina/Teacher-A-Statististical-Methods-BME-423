@@ -1,0 +1,1 @@
+source('~/Github/Teacher-A-Statististical-Methods-BME-423/Week_1_Discussion/Discussion_session_week_1.R', echo=TRUE)
