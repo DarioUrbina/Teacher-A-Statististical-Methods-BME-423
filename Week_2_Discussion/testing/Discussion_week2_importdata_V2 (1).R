@@ -1,25 +1,23 @@
 #Discussion week 2
-#by Toey 09/01/2019
+#by Dario Urbina Melendez 08/27/2020
 
 #TA - Guide
 #How to run, line by line press CTR+Enter
-#Tue(09/03) - Toey
-#Thu(09/05) - Gunce
 
 
 #----------------------- Indexing ---------------------------------
-rm(list = ls()); 
-cat("\014")
+rm(list = ls());                # clear workspace variables
+cat("\014")                     # clear console
 months <- c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
 months[6]
 months[6] <- "June"
-length(x=months)
+length(x=months);
 
 cat("\014")
 months[c(2,5,8)]
 months[c(2,5,8)]<-c("FebFeb","MayMay","AugAug")
 
-months
+months                          #Display months
 months <- c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
 
 cat("\014")
@@ -30,13 +28,20 @@ months[months!="Dec"]
 sales.by.month <- c(0,100,200,50,0,0,0,0,0,0,0,0)
 sales.indexing <- sales.by.month>0
 sales.indexing
-months[sales.indexing]
+months[sales.indexing]           #Show only the months that correspond to the index "True"
 
+##                              in-class exercise (1/2)
+#Option 1:
+sales.by.month[match("Apr", months)]
 
+#Option 2:
+sales.by.month[months==April]
 
-## in-class exercise
+##                              in-class exercise
+
 # Randomize months 
 # Randomize sales.by.month
+
 
 #--------------------------Data Frame "mtcar" example-----------------------
 ## mtcar - Exercise, slide 12
@@ -45,7 +50,11 @@ months[sales.indexing]
 rm(list = ls()); 
 cat("\014")
 View(mtcars)
-mysubset.mtcars <- mtcars[,c("mpg","hp")]  
+mysubset.mtcars <- mtcars[,c("mpg","hp")]        #All lines, specific columns
+#mysubset.mtcars <- mtcars[2:4,c("mpg","hp")]        #Specific lines, specific columns
+
+##   in-class exercise
+
 solution1 <- mysubset.mtcars[mysubset.mtcars$mpg>20,]
 
 mean(solution1[,1],na.rm=TRUE) #mean mpg = 25.47857
@@ -54,6 +63,8 @@ median(solution1[,2],na.rm=TRUE)
 
 #Alternative solution
 mysubset.mtcars2 <- subset(mtcars,mpg>20,c("mpg","hp"))  # get two colums(mpg,hp) and get all row data which have mpg higher than 20
+                        #subset(x,subset,select,drop)     We are not usig drop in this case
+
 
 
 
@@ -74,7 +85,7 @@ setwd("C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/
 #Error if the file location is not specified, you can either setwd or define the pathname
 
 #DUM: gives problems:
-mydata<-read.csv("All_Data_2020_new.csv",sep=",", header=TRUE) 
+mydata<-read.csv("All_Data_2020_0827.csv",sep=",", header=TRUE) 
 
 #DUM (a correction):
 #mydata<-read.csv("All_Data_2020.csv",sep=",")
@@ -85,11 +96,9 @@ write.table(mydata, "mydata.txt", sep="\t")
 
 #Use pathname
 
-#DUM: Following block commented becasue it gives errors
-
 rm(list = ls()); 
 cat("\014")
-mypath <- "C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion/testing/All_Data_2020_new.csv"
+mypath <- "C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_2_Discussion/testing/All_Data_2020_0827.csv"
 mydata <- read.csv(mypath,header=TRUE);
 View(mydata)
 cat("\014")
@@ -129,12 +138,6 @@ summary(mydata)
 #How many students are left-handed?
 #What is the average HR, Height, WRT of male students
 #What is the average HR,Height,WRT of female students
-
-
-
-
-
-
 
 #Portion of data, use brackets
 # mydata[1:5,2:3]
