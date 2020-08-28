@@ -55,7 +55,6 @@ boxplot(x=mydata$HR,
 )
 
 
-
 #In-class exercise
 #1. Are the heart data of the students who have blue or green eyes normally distributed? 
 #conditional on eye color = "GRN" or "BLU"
@@ -64,53 +63,66 @@ boxplot(x=mydata$HR,
 #___________OK___________
 
 cat("\014")
-hist(x = mydata$HR[mydata$Ecolor=="GRN" | mydata$Ecolor=="BLU"],
+hist(x = mydata$HR[mydata$EyeColor=="GRN" | mydata$EyeColor=="BLU"],
      main="Heart rate of students",     # Title
      sub="subtitle goes here",          # Subtitle
      ylab="Heart rate",                 # ylabel
      xlab="bpm") 
 
+#hist(x = mydata$HR[mydata$EyeColor=="GRN" | mydata$EyeColor=="BLU"],
+#     main="Heart rate of students",     # Title
+#     sub="subtitle goes here",          # Subtitle
+#     ylab="Heart rate",                 # ylabel
+#     xlab="bpm") 
 
-#2. Is there any outlier in the heart rate data of the male students who sit on the left side of the room?
+
+#2 (2020). Is there any outlier in the heart rate data of the male students that have a thumb width larger than 19 mm?
 #If there is, what is the outlier?
+
 #Solution
-boxplot(x=mydata$HR[mydata$SoR=="L" & mydata$Sex=="M" ],xlab="BME423",ylab="bpm",main="Heart rate")
-mydata$HR[mydata$SoR=="L" & mydata$Sex=="M" & mydata$HR>100]
+boxplot(x=mydata$HR[mydata$WidthRightThumb >=19 & mydata$Sex=="M" ],xlab="BME423",ylab="bpm",main="Heart rate")
+mydata$HR[mydata$WidthRightThumb >=19 & mydata$Sex=="M" & mydata$HR>88]
 # Command+shift+c in OS X to comment out multiple lines
 
 #-------------------Descriptive Statistics--------------------------
 #mean
-mean(mydata$WRT)
-mean( x = mydata$WRT, trim = .1) # trimmed 10% from the edge
+mean(mydata$WidthRightThumb)
+# trimmed 10% from the edge
+mean( x = mydata$WidthRightThumb, trim = .1) 
 
+#___________Ok______________#
 #mode must download library lsr
 library(lsr) 
 cat("\014")
-outlierremoved_WRT<-mydata$WRT[mydata$WRT>10 & mydata$WRT<30]
-hist(x = outlierremoved_WRT,
+boxplot(x=mydata$WidthRightThumb,xlab="BME423",ylab="mm",main="Width of Right Thumb")
+outlierremoved_WidthRightThumb<-mydata$WidthRightThumb[mydata$WidthRightThumb<30]
+hist(x = outlierremoved_WidthRightThumb,
      main="Width of right thumb",     # Title
-     sub="Two outliers are removed",  # Subtitle
-     ylab="Counts",                 # ylabel
-     xlab="mm") 
-
-modeOf(outlierremoved_WRT)
+     sub="One outlier removed",       # Subtitle
+     ylab="Counts",                   # ylabel
+     xlab="mm",
+     ylim = c(0,12)) 
+modeOf(outlierremoved_WidthRightThumb)
+hist(x = mydata$WidthRightThumb,
+     main="Width of right thumb",     
+     sub="No outliers removed",     ylab="Counts",     xlab="mm",     ylim = c(0,15)) 
 
 #Mode can use with non-numeric value
-modeOf(mydata$Hand) 
+modeOf(mydata$Handedness) 
 
-mean( x = mydata$WRT, trim = .1) # trimmed 10% from the edge
+mean( x = mydata$WidthRightThumb, trim = .1) # trimmed 10% from the edge
 range(mydata$HR)
 
 
 #Based on the histogram, can you roughly guess the Q1, and Q3 of the data
-0.25*length(x=outlierremoved_WRT) #How many = 25%
-0.75*length(x=outlierremoved_WRT)
+0.25*length(x=outlierremoved_WidthRightThumb) #How many = 25%
+0.75*length(x=outlierremoved_WidthRightThumb)
 
-quantile(x=outlierremoved_WRT,probs=.5) # what does it mean?
-quantile(x=outlierremoved_WRT,probs=c(.25,.75)) # same as interquartile range
+quantile(x=outlierremoved_WidthRightThumb,probs=.5) # what does it mean?
+quantile(x=outlierremoved_WidthRightThumb,probs=c(.25,.75)) # same as interquartile range
 
 
-IQR(x=outlierremoved_WRT) # interquartile range
+IQR(x=outlierremoved_WidthRightThumb) # interquartile range
 var(mydata$HR) # variance
 sd(mydata$HR) # standard deviation
 
@@ -134,7 +146,7 @@ kurtosi(mydata$Height)
 #3. Calculate the skewness and compared the value to that of the heart rate data of the students who have brown eyes
 
 cat("\014")
-eyecondition_HR<-mydata$HR[mydata$Ecolor=="GRN" | mydata$Ecolor=="BLU"]
+eyecondition_HR<-mydata$HR[mydata$EyeColor=="GRN" | mydata$EyeColor=="BLU"]
 hist(x = eyecondition_HR,
      main="Heart rate of students",     # Title
      sub="Green or Blue eyes",          # Subtitle
@@ -144,7 +156,7 @@ hist(x = eyecondition_HR,
 skew.HRgb<-skew(eyecondition_HR)
 
 
-eyecondition_HR<-mydata$HR[mydata$Ecolor=="BRN"]
+eyecondition_HR<-mydata$HR[mydata$EyeColor=="BRN"]
 hist(x = eyecondition_HR,
      main="Heart rate of students",     # Title
      sub="Brown Eyes",          # Subtitle
@@ -197,13 +209,13 @@ cat("\014")
 
 
 describeBy(x=mydata$HR,group=mydata$Sex,mat=TRUE,quant=c(.25,.75)) #matrix (data.frame) output
-describeBy(x=mydata$HR,list(mydata$SoR,mydata$Sex),mat=FALSE,quant=c(.25,.75)) 
+describeBy(x=mydata$HR,list(mydata$EyeColor,mydata$Sex),mat=FALSE,quant=c(.25,.75)) 
 
 
 
 #In-class exercise
 #1. Calculate the standard error
-describeBy(x=mydata$WRT,group=mydata$Sex,mat=FALSE,quant=.16) #matrix (data.frame) output
+describeBy(x=mydata$WidthRightThumb,group=mydata$Sex,mat=FALSE,quant=.16) #matrix (data.frame) output
 #Female
 #se= sd/sqrt(n)
 se.female<-3.58/34
