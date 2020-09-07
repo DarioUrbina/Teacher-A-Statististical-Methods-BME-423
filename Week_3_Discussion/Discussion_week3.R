@@ -6,8 +6,9 @@
 ##------------------Read All_mydata_2020.csv------------------------ 
 
 #Use pathname
-rm(list = ls()); 
-cat("\014")
+rm(list = ls());        # clear workspace variables
+cat("\014")             # clear console
+
 mypath<-'C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_3_Discussion/All_Data_2020_0827.csv'
 mydata <- read.csv(mypath,header=TRUE); 
 
@@ -23,18 +24,22 @@ hist(x = mydata$HR,
      ylab="Heart rate",                 # ylabel
      xlab="bpm")                         # xlabel 
 
+#to save an image:
+#jpeg('myplot.jpg', width=350, height=420)
 #Full properties
 hist(x = mydata$HR,
-     main="Heart rate of students",     # Title
+     main="Heart rate __ students",     # Title
      sub="subtitle goes here",          # Subtitle
      ylab="Heart rate",                 # ylabel
      xlab="bpm",                         # xlabel 
      density = 20,                      # shading lines: 10 per inch
      angle = 20,                        # angle of the shading lines is 40 degrees
-     border = "black",                  # colour of the borders of the bars
+     border = "blue",                  # colour of the borders of the bars
      col = "black",                    # color of the shading lines. gray20 is darker than gray80
      labels = TRUE,                     # frequency labels to each bar
-     ylim = c(0,40))                    # limit of y-axis
+     ylim = c(0,80))                    # limit of y-axis
+
+#dev.off
 
 ##---------------- boxplot --------------------- 
 #Simple properties
@@ -48,14 +53,15 @@ boxplot(x=mydata$HR,
         sub="subtitle goes here",       # Subtitle
         xlab="BME423",                  #xlabel
         ylab="Heart rate",              # ylabel
-        border="black",                 # dim the border
+        border="blue",                 # dim the border
         frame.plot=TRUE,               # frame border Y/N
         staplewex=1,                    # staple Y/N
         whisklty=3                      # line type for whisker
 )
 
 
-#In-class exercise
+#In-class exercise  ########################################################################
+
 #1. Are the heart data of the students who have blue or green eyes normally distributed? 
 #conditional on eye color = "GRN" or "BLU"
 #Solution
@@ -69,13 +75,6 @@ hist(x = mydata$HR[mydata$EyeColor=="GRN" | mydata$EyeColor=="BLU"],
      ylab="Heart rate",                 # ylabel
      xlab="bpm") 
 
-#hist(x = mydata$HR[mydata$EyeColor=="GRN" | mydata$EyeColor=="BLU"],
-#     main="Heart rate of students",     # Title
-#     sub="subtitle goes here",          # Subtitle
-#     ylab="Heart rate",                 # ylabel
-#     xlab="bpm") 
-
-
 #2 (2020). Is there any outlier in the heart rate data of the male students that have a thumb width larger than 19 mm?
 #If there is, what is the outlier?
 
@@ -83,6 +82,7 @@ hist(x = mydata$HR[mydata$EyeColor=="GRN" | mydata$EyeColor=="BLU"],
 boxplot(x=mydata$HR[mydata$WidthRightThumb >=19 & mydata$Sex=="M" ],xlab="BME423",ylab="bpm",main="Heart rate")
 mydata$HR[mydata$WidthRightThumb >=19 & mydata$Sex=="M" & mydata$HR>88]
 # Command+shift+c in OS X to comment out multiple lines
+
 
 #-------------------Descriptive Statistics--------------------------
 #mean
@@ -140,7 +140,7 @@ kurtosi(mydata$Height)
 
 
 
-#Exercise 
+#Exercise 3  #########################################################################
 #1. Plot histogram of the heart rate data of the students who have blue or green
 #2. Can you tell if the distribution is skewed?
 #3. Calculate the skewness and compared the value to that of the heart rate data of the students who have brown eyes
@@ -157,12 +157,14 @@ skew.HRgb<-skew(eyecondition_HR)
 
 
 eyecondition_HR<-mydata$HR[mydata$EyeColor=="BRN"]
+#jpeg('myplot.jpg', width=350, height=420)
 hist(x = eyecondition_HR,
      main="Heart rate of students",     # Title
      sub="Brown Eyes",          # Subtitle
      ylab="No. students",                 # ylabel
      xlab="bpm") 
 
+#dev.off
 
 skew.HRbrn<-skew(eyecondition_HR)
 skew.HRgb
@@ -196,7 +198,6 @@ describe(mydata,
          IQR=TRUE, #calculate the interquartile range
          omit=FALSE) #do not convert non-numerical values to numeric
 
-#We are not using these three lines
 describe(mydata$HR[mydata$Sex=="F"],quant=0.25)
 describe(mydata$HR[mydata$Sex=="M"],quant=0.25)
 quantile(mydata$HR[mydata$Sex=="M"],0.25)
@@ -218,10 +219,17 @@ describeBy(x=mydata$HR,list(mydata$EyeColor,mydata$Sex),mat=FALSE,quant=c(.25,.7
 describeBy(x=mydata$WidthRightThumb,group=mydata$Sex,mat=FALSE,quant=.16) #matrix (data.frame) output
 #Female
 #se= sd/sqrt(n)
-se.female<-3.58/34
+    #se.female<-3.58/34
+    #se.female
+#Male
+     #se.male<-7.34/22
+     #se.male
+sd.female = sd(mydata$WidthRightThumb[mydata$Sex=="F"])
+n=sum(mydata$Sex=="F")
+se.female<-sd.female/sqrt(n)
 se.female
 #Male
-se.male<-7.34/22
+se.male<-10.41713/sqrt(15)
 se.male
 
 #2. Calculate the 25th and 75th percentile

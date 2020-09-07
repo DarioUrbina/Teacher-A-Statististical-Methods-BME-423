@@ -60,9 +60,9 @@ dfa  # Matrix of one data type
 
 
 ## 2. Load library
-#install.packages("psych")
-#install.packages("car")
-#install.packages("dplyr")
+# install.packages("psych")
+# install.packages("car")
+# install.packages("dplyr")
 # install.packages("lsr")
 # install.packages("ggplot2")
 # install.packages("vioplot")
