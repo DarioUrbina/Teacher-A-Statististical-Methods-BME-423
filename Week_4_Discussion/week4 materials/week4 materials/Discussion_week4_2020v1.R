@@ -27,6 +27,9 @@ cat("\014") # it means ctrl+L. clear window
 
 #CTR+shift+c to comment, Hand-solution 
 library(psych)
+
+setwd("~/Github/Teacher-A-Statististical-Methods-BME-423/Week_4_Discussion/week4 materials/week4 materials")
+
 describeBy(clin.trial$mood.gain,group=clin.trial$drug)
 # n.placebo <- length(x=clin.trial$mood.gain[clin.trial$drug=="placebo"])
 # n.anxifree <- length(x=clin.trial$mood.gain[clin.trial$drug=="anxifree"])

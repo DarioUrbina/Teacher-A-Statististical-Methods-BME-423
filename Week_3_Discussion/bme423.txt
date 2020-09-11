@@ -1,0 +1,512 @@
+quantile(mydata$HR[mydata$Sex=="M"],0.25)
+cat("\014")
+describeBy(x=mydata,group=mydata$Sex,mat=FALSE) #Use the same argument as describe
+?describeBy
+cat("\014")
+describeBy(x=mydata$HR,group=mydata$Sex,mat=TRUE,quant=c(.25,.75)) #matrix (data.frame) output
+describeBy(x=mydata$HR,list(mydata$EyeColor,mydata$Sex),mat=FALSE,quant=c(.25,.75))
+#In-class exercise
+#1. Calculate the standard error
+describeBy(x=mydata$WidthRightThumb,group=mydata$Sex,mat=FALSE,quant=.16) #matrix (data.frame) output
+?se
+#In-class exercise
+#1. Calculate the standard error
+describeBy(x=mydata$WidthRightThumb,group=mydata$Sex,mat=FALSE,quant=.16) #matrix (data.frame) output
+#Female
+#se= sd/sqrt(n)
+se.female<-3.58/34
+se.female
+#Female
+#se= sd/sqrt(n)
+#se.female<-3.58/34
+#se.female
+#Male
+#se.male<-7.34/22
+#se.male
+sd.female = sd(mydata$WidthRightThumb[mydata$Sex=="F"])
+n=sum(mydata$Sex=="F")
+se.female<-sd.female/sqrt(n)
+se.female
+#Male
+se.male<-10.41713/sqrt(15)
+se.male
+#2. Calculate the 25th and 75th percentile
+describeBy(x=mydata$HR,group=mydata$Sex,mat=FALSE,quant=c(.25,.75)) #matrix (data.frame) output
+eyecondition_HR<-mydata$HR[mydata$EyeColor=="BRN"]
+hist(x = eyecondition_HR,
+main="Heart rate of students",     # Title
+sub="Brown Eyes",          # Subtitle
+ylab="No. students",                 # ylabel
+xlab="bpm")
+?jpeg
+jpeg(“myplot.jpg”, width=350, height=420)
+hist(x = eyecondition_HR,
+main="Heart rate of students",     # Title
+sub="Brown Eyes",          # Subtitle
+ylab="No. students",                 # ylabel
+xlab="bpm")
+dev.off
+jpeg('myplot.jpg', width=350, height=420)
+hist(x = eyecondition_HR,
+main="Heart rate of students",     # Title
+sub="Brown Eyes",          # Subtitle
+ylab="No. students",                 # ylabel
+xlab="bpm")
+dev.off
+skew.HRbrn<-skew(eyecondition_HR)
+skew.HRgb
+skew.HRbrn
+## --------------- Summary vs. Describe vs. Describeby()
+#What's the difference between summary, describe and describeby
+library(psych)
+cat("\014")
+summary(mydata) #all columns
+summary(mydata$HR)
+IQR(x=mydata$HR) #Compare to summary
+cat("\014")
+describe(mydata$HR) # must install & load libray("pschy")
+describe(mydata$HR,quant=c(.25,.75), IQR=TRUE) # must install & load libray("pschy")
+#Full properties
+describe(mydata,
+na.rm = TRUE, #delete missing data
+interp=FALSE, #
+skew = TRUE,  #calculate skew and kurtosis
+ranges = TRUE, #calculate range
+trim=.1,  #trim means->default
+type=3,   #which estimate of skew and kurtosis
+check=TRUE, #check non-numeric variables
+fast=NULL, #true will improve speed
+quant=c(.25,.75) , #find the specified quantiles
+IQR=TRUE, #calculate the interquartile range
+omit=FALSE) #do not convert non-numerical values to numeric
+#We are not using these three lines
+describe(mydata$HR[mydata$Sex=="F"],quant=0.25)
+describe(mydata$HR[mydata$Sex=="M"],quant=0.25)
+quantile(mydata$HR[mydata$Sex=="M"],0.25)
+cat("\014")
+describeBy(x=mydata,group=mydata$Sex,mat=FALSE) #Use the same argument as describe
+cat("\014")
+describeBy(x=mydata$HR,group=mydata$Sex,mat=TRUE,quant=c(.25,.75)) #matrix (data.frame) output
+describeBy(x=mydata$HR,list(mydata$EyeColor,mydata$Sex),mat=FALSE,quant=c(.25,.75))
+#In-class exercise
+#1. Calculate the standard error
+describeBy(x=mydata$WidthRightThumb,group=mydata$Sex,mat=FALSE,quant=.16) #matrix (data.frame) output
+#Female
+#se= sd/sqrt(n)
+#se.female<-3.58/34
+#se.female
+#Male
+#se.male<-7.34/22
+#se.male
+sd.female = sd(mydata$WidthRightThumb[mydata$Sex=="F"])
+n=sum(mydata$Sex=="F")
+se.female<-sd.female/sqrt(n)
+eyecondition_HR<-mydata$HR[mydata$EyeColor=="BRN"]
+#jpeg('myplot.jpg', width=350, height=420)
+hist(x = eyecondition_HR,
+main="Heart rate of students",     # Title
+sub="Brown Eyes",          # Subtitle
+ylab="No. students",                 # ylabel
+xlab="bpm")
+skew.HRbrn<-skew(eyecondition_HR)
+cat("\014")
+eyecondition_HR<-mydata$HR[mydata$EyeColor=="GRN" | mydata$EyeColor=="BLU"]
+hist(x = eyecondition_HR,
+main="Heart rate of students",     # Title
+sub="Green or Blue eyes",          # Subtitle
+ylab="No. students",                 # ylabel
+xlab="bpm")
+skew.HRgb<-skew(eyecondition_HR)
+eyecondition_HR<-mydata$HR[mydata$EyeColor=="BRN"]
+#jpeg('myplot.jpg', width=350, height=420)
+hist(x = eyecondition_HR,
+main="Heart rate of students",     # Title
+sub="Brown Eyes",          # Subtitle
+ylab="No. students",                 # ylabel
+xlab="bpm")
+skew.HRbrn<-skew(eyecondition_HR)
+#to save an image:
+jpeg('myplot.jpg', width=350, height=420)
+#Full properties
+hist(x = mydata$HR,
+main="Heart rate __ students",     # Title
+sub="subtitle goes here",          # Subtitle
+ylab="Heart rate",                 # ylabel
+xlab="bpm",                         # xlabel
+density = 20,                      # shading lines: 10 per inch
+angle = 20,                        # angle of the shading lines is 40 degrees
+border = "blue",                  # colour of the borders of the bars
+col = "black",                    # color of the shading lines. gray20 is darker than gray80
+labels = TRUE,                     # frequency labels to each bar
+ylim = c(0,80))                    # limit of y-axis
+dev.off
+#Use pathname
+rm(list = ls());        # clear workspace variables
+cat("\014")             # clear console
+mypath<-'C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_3_Discussion/All_Data_2020_0827.csv'
+mydata <- read.csv(mypath,header=TRUE);
+##--------------- histogram ------------------
+graphics.off()
+cat("\014")
+#Simple properties
+hist(x = mydata$HR,
+main="Heart rate of students",     # Title
+sub="subtitle goes here",          # Subtitle
+ylab="Heart rate",                 # ylabel
+xlab="bpm")                         # xlabel
+#to save an image:
+jpeg('myplot.jpg', width=350, height=420)
+#Full properties
+hist(x = mydata$HR,
+main="Heart rate __ students",     # Title
+sub="subtitle goes here",          # Subtitle
+ylab="Heart rate",                 # ylabel
+xlab="bpm",                         # xlabel
+density = 20,                      # shading lines: 10 per inch
+angle = 20,                        # angle of the shading lines is 40 degrees
+border = "blue",                  # colour of the borders of the bars
+col = "black",                    # color of the shading lines. gray20 is darker than gray80
+labels = TRUE,                     # frequency labels to each bar
+ylim = c(0,80))                    # limit of y-axis
+dev.off
+mypath<-'C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_3_Discussion/All_Data_2020_0827.csv'
+mydata <- read.csv(mypath,header=TRUE);
+##--------------- histogram ------------------
+graphics.off()
+cat("\014")
+#Simple properties
+hist(x = mydata$HR,
+main="Heart rate of students",     # Title
+sub="subtitle goes here",          # Subtitle
+ylab="Heart rate",                 # ylabel
+xlab="bpm")                         # xlabel
+#to save an image:
+#jpeg('myplot.jpg', width=350, height=420)
+#Full properties
+hist(x = mydata$HR,
+main="Heart rate __ students",     # Title
+sub="subtitle goes here",          # Subtitle
+ylab="Heart rate",                 # ylabel
+xlab="bpm",                         # xlabel
+density = 20,                      # shading lines: 10 per inch
+angle = 20,                        # angle of the shading lines is 40 degrees
+border = "blue",                  # colour of the borders of the bars
+col = "black",                    # color of the shading lines. gray20 is darker than gray80
+labels = TRUE,                     # frequency labels to each bar
+ylim = c(0,80))                    # limit of y-axis
+##---------------- boxplot ---------------------
+#Simple properties
+graphics.off()
+#Use pathname
+rm(list = ls());        # clear workspace variables
+cat("\014")             # clear console
+mypath<-'C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_3_Discussion/All_Data_2020_0827.csv'
+mypath<-'C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_3_Discussion/All_Data_2020_0827.csv'
+mydata <- read.csv(mypath,header=TRUE);
+##--------------- histogram ------------------
+graphics.off()
+cat("\014")
+#Simple properties
+hist(x = mydata$HR,
+main="Heart rate of students",     # Title
+sub="subtitle goes here",          # Subtitle
+ylab="Heart rate",                 # ylabel
+xlab="bpm")                         # xlabel
+#to save an image:
+#jpeg('myplot.jpg', width=350, height=420)
+#Full properties
+hist(x = mydata$HR,
+main="Heart rate __ students",     # Title
+sub="subtitle goes here",          # Subtitle
+ylab="Heart rate",                 # ylabel
+xlab="bpm",                         # xlabel
+density = 20,                      # shading lines: 10 per inch
+angle = 20,                        # angle of the shading lines is 40 degrees
+border = "blue",                  # colour of the borders of the bars
+col = "black",                    # color of the shading lines. gray20 is darker than gray80
+labels = TRUE,                     # frequency labels to each bar
+ylim = c(0,80))                    # limit of y-axis
+#to save an image:
+#jpeg('myplot.jpg', width=350, height=420)
+#Full properties
+hist(x = mydata$HR,
+main="Heart rate __ students",     # Title
+sub="subtitle goes here",          # Subtitle
+ylab="Heart rate",                 # ylabel
+xlab="bpm",                         # xlabel
+density = 20,                      # shading lines: 10 per inch
+angle = 20,                        # angle of the shading lines is 40 degrees
+border = "blue",                  # colour of the borders of the bars
+col = "black",                    # color of the shading lines. gray20 is darker than gray80
+labels = TRUE,                     # frequency labels to each bar
+ylim = c(0,80))                    # limit of y-axis
+?hist
+##---------------- boxplot ---------------------
+#Simple properties
+graphics.off()
+cat("\014")
+boxplot(x=mydata$HR,xlab="BME423",ylab="bpm",main="Heart rate")
+##---------------- boxplot ---------------------
+#Simple properties
+graphics.off()
+cat("\014")
+boxplot(x=mydata$HR,xlab="BME423",ylab="bpm",main="Heart rate")
+#Full properties
+boxplot(x=mydata$HR,
+main="Heart rate of students",  # Title
+sub="subtitle goes here",       # Subtitle
+xlab="BME423",                  #xlabel
+ylab="Heart rate",              # ylabel
+border="black",                 # dim the border
+frame.plot=TRUE,               # frame border Y/N
+staplewex=1,                    # staple Y/N
+whisklty=3                      # line type for whisker
+)
+##---------------- boxplot ---------------------
+#Simple properties
+graphics.off()
+cat("\014")
+boxplot(x=mydata$HR,xlab="BME423",ylab="bpm",main="Heart rate")
+#Full properties
+boxplot(x=mydata$HR,
+main="Heart rate of students",  # Title
+sub="subtitle goes here",       # Subtitle
+xlab="BME423",                  #xlabel
+ylab="Heart rate",              # ylabel
+border="black",                 # dim the border
+frame.plot=TRUE,               # frame border Y/N
+staplewex=1,                    # staple Y/N
+whisklty=3                      # line type for whisker
+)
+#Full properties
+boxplot(x=mydata$HR,
+main="Heart rate of students",  # Title
+sub="subtitle goes here",       # Subtitle
+xlab="BME423",                  #xlabel
+ylab="Heart rate",              # ylabel
+border="blue",                 # dim the border
+frame.plot=TRUE,               # frame border Y/N
+staplewex=1,                    # staple Y/N
+whisklty=3                      # line type for whisker
+)
+#Full properties
+boxplot(x=mydata$HR,
+main="Heart rate of students",  # Title
+sub="subtitle goes here",       # Subtitle
+xlab="BME423",                  #xlabel
+ylab="Heart rate",              # ylabel
+border="blue",                 # dim the border
+frame.plot=TRUE,               # frame border Y/N
+staplewex=1,                    # staple Y/N
+whisklty=7                      # line type for whisker
+)
+#Full properties
+boxplot(x=mydata$HR,
+main="Heart rate of students",  # Title
+sub="subtitle goes here",       # Subtitle
+xlab="BME423",                  #xlabel
+ylab="Heart rate",              # ylabel
+border="blue",                 # dim the border
+frame.plot=TRUE,               # frame border Y/N
+staplewex=1,                    # staple Y/N
+whisklty=1                      # line type for whisker
+)
+#Full properties
+boxplot(x=mydata$HR,
+main="Heart rate of students",  # Title
+sub="subtitle goes here",       # Subtitle
+xlab="BME423",                  #xlabel
+ylab="Heart rate",              # ylabel
+border="blue",                 # dim the border
+frame.plot=TRUE,               # frame border Y/N
+staplewex=1,                    # staple Y/N
+whisklty=3                      # line type for whisker
+)
+setwd("~/Github/Teacher-A-Statististical-Methods-BME-423/Week_3_Discussion")
+cat("\014")
+hist(x = mydata$HR[mydata$EyeColor=="GRN" | mydata$EyeColor=="BLU"],
+main="Heart rate of students",     # Title
+sub="subtitle goes here",          # Subtitle
+ylab="Heart rate",                 # ylabel
+xlab="bpm")
+#Solution
+boxplot(x=mydata$HR[mydata$WidthRightThumb >=19 & mydata$Sex=="M" ],xlab="BME423",ylab="bpm",main="Heart rate")
+mydata$HR[mydata$WidthRightThumb >=19 & mydata$Sex=="M" & mydata$HR>88]
+#Solution
+boxplot(x=mydata$HR[mydata$WidthRightThumb >=19 & mydata$Sex=="M" ],xlab="BME423",ylab="bpm",main="Heart rate")
+#Solution
+boxplot(x=mydata$HR[mydata$WidthRightThumb >=19 & mydata$Sex=="M" ],xlab="BME423",ylab="bpm",main="Heart rate")
+#Solution
+boxplot(x=mydata$HR[mydata$WidthRightThumb >=19 & mydata$Sex=="M" ],xlab="BME423",ylab="bpm",main="Heart rate")
+mydata$HR[mydata$WidthRightThumb >=19 & mydata$Sex=="M" & mydata$HR>88]
+#-------------------Descriptive Statistics--------------------------
+#mean
+mean(mydata$WidthRightThumb)
+#-------------------Descriptive Statistics--------------------------
+#mean
+mean(mydata$WidthRightThumb)
+# trimmed 10% from the edge
+mean( x = mydata$WidthRightThumb, trim = .1)
+#___________Ok______________#
+#mode must download library lsr
+library(lsr)
+#-------------------Descriptive Statistics--------------------------
+#mean
+mean(mydata$WidthRightThumb)
+# trimmed 10% from the edge
+mean( x = mydata$WidthRightThumb, trim = .1)
+# trimmed 10% from the edge
+mean( x = mydata$WidthRightThumb, trim = .4)
+# trimmed 10% from the edge
+mean( x = mydata$WidthRightThumb, trim = .1)
+#___________Ok______________#
+#mode must download library lsr
+library(lsr)
+cat("\014")
+boxplot(x=mydata$WidthRightThumb,xlab="BME423",ylab="mm",main="Width of Right Thumb")
+outlierremoved_WidthRightThumb<-mydata$WidthRightThumb[mydata$WidthRightThumb<30]
+hist(x = outlierremoved_WidthRightThumb,
+main="Width of right thumb",     # Title
+sub="One outlier removed",       # Subtitle
+ylab="Counts",                   # ylabel
+xlab="mm",
+ylim = c(0,12))
+modeOf(outlierremoved_WidthRightThumb)
+hist(x = mydata$WidthRightThumb,
+main="Width of right thumb",
+sub="No outliers removed",     ylab="Counts",     xlab="mm",     ylim = c(0,15))
+#Mode can use with non-numeric value
+modeOf(mydata$Handedness)
+?atomic vector
+#Mode can use with non-numeric value
+modeOf(mydata$Handedness)
+mean( x = mydata$WidthRightThumb, trim = .1) # trimmed 10% from the edge
+range(mydata$HR)
+hist(x = outlierremoved_WidthRightThumb,
+main="Width of right thumb",     # Title
+sub="One outlier removed",       # Subtitle
+ylab="Counts",                   # ylabel
+xlab="mm",
+ylim = c(0,12))
+#Based on the histogram, can you roughly guess the Q1, and Q3 of the data
+0.25*length(x=outlierremoved_WidthRightThumb) #How many = 25%
+0.75*length(x=outlierremoved_WidthRightThumb)
+quantile(x=outlierremoved_WidthRightThumb,probs=.5) # what does it mean?
+quantile(x=outlierremoved_WidthRightThumb,probs=c(.25,.75)) # same as interquartile range
+IQR(x=outlierremoved_WidthRightThumb) # interquartile range
+var(mydata$HR) # variance
+sd(mydata$HR) # standard deviation
+#------------------ Skewness and Kurtosis --------------------
+library(psych)
+hist(x = mydata$Height,
+main="Height",     # Title
+sub="",  # Subtitle
+ylab="Counts",                 # ylabel
+xlab="Inches")
+skew(mydata$Height) # asymmetry of probability distribution
+# Shape of the distribution (flat or pointy?)
+kurtosi(mydata$Height)
+eyecondition_HR<-mydata$HR[mydata$EyeColor=="GRN" | mydata$EyeColor=="BLU"]
+hist(x = eyecondition_HR,
+main="Heart rate of students",     # Title
+sub="Green or Blue eyes",          # Subtitle
+ylab="No. students",                 # ylabel
+xlab="bpm")
+skew.HRgb<-skew(eyecondition_HR)
+skew.HRgb
+eyecondition_HR<-mydata$HR[mydata$EyeColor=="BRN"]
+#jpeg('myplot.jpg', width=350, height=420)
+hist(x = eyecondition_HR,
+main="Heart rate of students",     # Title
+sub="Brown Eyes",          # Subtitle
+ylab="No. students",                 # ylabel
+xlab="bpm")
+skew.HRbrn<-skew(eyecondition_HR)
+skew.HRgb
+skew.HRbrn
+## --------------- Summary vs. Describe vs. Describeby()
+#What's the difference between summary, describe and describeby
+library(psych)
+cat("\014")
+summary(mydata) #all columns
+summary(mydata$HR)
+IQR(x=mydata$HR) #Compare to summary
+cat("\014")
+describe(mydata$HR) # must install & load libray("pschy")
+describe(mydata$HR,quant=c(.25,.75), IQR=TRUE) # must install & load libray("pschy")
+#Full properties
+describe(mydata,
+na.rm = TRUE, #delete missing data
+interp=FALSE, #
+skew = TRUE,  #calculate skew and kurtosis
+ranges = TRUE, #calculate range
+trim=.1,  #trim means->default
+type=3,   #which estimate of skew and kurtosis
+check=TRUE, #check non-numeric variables
+fast=NULL, #true will improve speed
+quant=c(.25,.75) , #find the specified quantiles
+IQR=TRUE, #calculate the interquartile range
+omit=FALSE) #do not convert non-numerical values to numeric
+#Full properties
+describe(mydata,
+na.rm = TRUE, #delete missing data
+interp=FALSE, #
+skew = FALSE,  #calculate skew and kurtosis
+ranges = TRUE, #calculate range
+trim=.1,  #trim means->default
+type=3,   #which estimate of skew and kurtosis
+check=TRUE, #check non-numeric variables
+fast=NULL, #true will improve speed
+quant=c(.25,.75) , #find the specified quantiles
+IQR=TRUE, #calculate the interquartile range
+omit=FALSE) #do not convert non-numerical values to numeric
+#Full properties
+describe(mydata,
+na.rm = TRUE, #delete missing data
+interp=FALSE, #
+skew = TRUE,  #calculate skew and kurtosis
+ranges = TRUE, #calculate range
+trim=.1,  #trim means->default
+type=3,   #which estimate of skew and kurtosis
+check=TRUE, #check non-numeric variables
+fast=NULL, #true will improve speed
+quant=c(.25,.75) , #find the specified quantiles
+IQR=TRUE, #calculate the interquartile range
+omit=FALSE) #do not convert non-numerical values to numeric
+#Full properties
+describe(mydata,
+na.rm = TRUE, #delete missing data
+interp=FALSE, #
+skew = FALSE,  #calculate skew and kurtosis
+ranges = TRUE, #calculate range
+trim=.1,  #trim means->default
+type=3,   #which estimate of skew and kurtosis
+check=TRUE, #check non-numeric variables
+fast=NULL, #true will improve speed
+quant=c(.25,.75) , #find the specified quantiles
+IQR=TRUE, #calculate the interquartile range
+omit=FALSE) #do not convert non-numerical values to numeric
+#Full properties
+describe(mydata,
+na.rm = TRUE, #delete missing data
+interp=FALSE, #
+skew = TRUE,  #calculate skew and kurtosis
+ranges = TRUE, #calculate range
+trim=.1,  #trim means->default
+type=3,   #which estimate of skew and kurtosis
+check=TRUE, #check non-numeric variables
+fast=NULL, #true will improve speed
+quant=c(.25,.75) , #find the specified quantiles
+IQR=TRUE, #calculate the interquartile range
+omit=FALSE) #do not convert non-numerical values to numeric
+describe(mydata$HR[mydata$Sex=="F"],quant=0.25)
+describe(mydata$HR[mydata$Sex=="M"],quant=0.25)
+quantile(mydata$HR[mydata$Sex=="M"],0.25)
+cat("\014")
+cat("\014")
+describeBy(x=mydata,group=mydata$Sex,mat=FALSE) #Use the same argument as describe
+?history
+history("bme423_Thursdaysession.txt")
+setwd("~/Github/Teacher-A-Statististical-Methods-BME-423/Week_3_Discussion")
+history("bme423_Thursdaysession.txt")
+savehistory("bme423.txt")
