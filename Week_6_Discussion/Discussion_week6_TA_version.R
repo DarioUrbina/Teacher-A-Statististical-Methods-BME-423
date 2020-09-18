@@ -2,11 +2,7 @@
 rm(list = ls()); # clear workspace variables
 cat("\014") # it means ctrl+L. clear window
 
-
-
 #Posthoc pairwise
-
-
 
 #Independent t-test
 
@@ -28,9 +24,9 @@ independentSamplesTTest(
 
 
 
-  #In-class exercise
+#In-class exercise############################
+#Compare height of female and male students 
 
-#Use pathname
 rm(list = ls()); 
 cat("\014")
 mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020_0827.csv";
@@ -49,12 +45,13 @@ height.male <- mydata$Height[mydata$Sex=="M"]
 
 #Get subset of data
 subset.mydata <- mydata[,c("Sex","Height")]  
+subset.mydata$Sex <- factor(subset.mydata$Sex)
 independentSamplesTTest(
   formula = Height~Sex, #formula specifying outcome and group variables
   data = subset.mydata, #dataframe
   var.equal = TRUE,     #assume that the two groups have the same variance  
 )
-
+###############################################
 
 #One sample t-test
 mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/harpo.Rdata";
@@ -64,9 +61,10 @@ View(harpo)
 oneSampleTTest( x=harpo$grade, mu=70)
 
 
-#In-class exercise
 
-#Use pathname
+#In-class exercise###
+#Check if the mean height of female students is different from 64
+
 rm(list = ls()); 
 cat("\014")
 mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020_0827.csv";
@@ -76,6 +74,9 @@ mydata <- read.csv(mypath,header=TRUE);
 
 height.female <- mydata$Height[mydata$Sex=="F"]
 oneSampleTTest( x=height.female, mu=64)
+####################
+
+
 
 #Pairwise and posthocpairwise T test
 rm(list = ls()); # clear workspace variables
@@ -105,8 +106,7 @@ posthocPairwiseT( my.anova,   # for Holm correction (default)
 )
 
 
-####SO far ok
-#Discussion Assignment 2 - Answer Key
+#Discussion Assignment 2 - Answer Key##############
 
 rm(list = ls()); 
 cat("\014")
@@ -118,9 +118,11 @@ mydata <- read.csv(mypath,header=TRUE);
 #QUESTION 1
 HR.female <- mydata$HR[mydata$Sex=="F"]
 HR.male <- mydata$HR[mydata$Sex=="M"]
-
 #Get subset of data
+
 subset.mydata <- mydata[,c("Sex","HR")]  
+subset.mydata$Sex <- factor(subset.mydata$Sex)
+
 independentSamplesTTest(
   formula = HR~Sex, #formula specifying outcome and group variables
   data = subset.mydata,          #dataframe
@@ -131,3 +133,4 @@ independentSamplesTTest(
 HR.male <- mydata$HR[mydata$Sex=="M"]
 oneSampleTTest( x=HR.male, mu=65)
 
+#################################################
