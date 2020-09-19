@@ -23,9 +23,11 @@ independentSamplesTTest(
   )
 
 
-####In-class exercise###
+
+#In-class exercise############################
 #Compare height of female and male students 
-########################
+
+###############################################
 
 #One sample t-test
 mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/harpo.Rdata";
@@ -35,11 +37,13 @@ View(harpo)
 oneSampleTTest( x=harpo$grade, mu=70)
 
 
-####In-class exercise###
+
+#In-class exercise###
 #Check if the mean height of female students is different from 64
-#
-#
-########################
+
+####################
+
+
 
 #Pairwise and posthocpairwise T test
 rm(list = ls()); # clear workspace variables
@@ -50,7 +54,6 @@ mypath = "C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-4
 
 load(mypath)
 View(clin.trial)
-
 #Run the ANOVA test again:
 my.anova <- aov( mood.gain ~ drug, clin.trial ) 
 summary(my.anova )
@@ -70,7 +73,8 @@ posthocPairwiseT( my.anova,   # for Holm correction (default)
 )
 
 
-#Discussion Assignment 2#####
+#In-class exercise############################
+#1.-Compare heart rate of female and male students
+#2.-Check if the mean heart rate of male students is different from 65
 
-#############################
-
+#################################################

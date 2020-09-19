@@ -29,7 +29,7 @@ independentSamplesTTest(
 
 rm(list = ls()); 
 cat("\014")
-mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020_0827.csv";
+mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020.csv";
 mydata <- read.csv(mypath,header=TRUE); 
 View(mydata)
 cat("\014")
@@ -67,7 +67,7 @@ oneSampleTTest( x=harpo$grade, mu=70)
 
 rm(list = ls()); 
 cat("\014")
-mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020_0827.csv";
+mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020.csv";
 mydata <- read.csv(mypath,header=TRUE); 
 
 mydata <- read.csv(mypath,header=TRUE); 
@@ -106,12 +106,15 @@ posthocPairwiseT( my.anova,   # for Holm correction (default)
 )
 
 
-#Discussion Assignment 2 - Answer Key##############
+#In-class exercise############################
+#1.-Compare heart rate of female and male students
+#2.-Check if the mean heart rate of male students is different from 65
+
 
 rm(list = ls()); 
 cat("\014")
 
-mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020_0827.csv";
+mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020.csv";
 mydata <- read.csv(mypath,header=TRUE); 
 
 
