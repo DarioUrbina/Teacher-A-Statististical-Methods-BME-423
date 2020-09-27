@@ -27,31 +27,6 @@ independentSamplesTTest(
 #In-class exercise############################
 #Compare height of female and male students 
 
-rm(list = ls()); 
-cat("\014")
-mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020.csv";
-mydata <- read.csv(mypath,header=TRUE); 
-View(mydata)
-cat("\014")
-
-height.female <- mydata$Height[mydata$Sex=="F"]
-height.male <- mydata$Height[mydata$Sex=="M"]
-
-
-#Test for normality : shapiro.test, skip this part during the discussion, only mention that we assume normality for both groups
-# H0: the data is normally distributed, if p>0.05, normality can be assumed
-#shapiro.test(height.male) 
-#shapiro.test(height.female) 
-
-#Get subset of data
-subset.mydata <- mydata[,c("Sex","Height")]  
-#to encode a vector as a factor:
-subset.mydata$Sex <- factor(subset.mydata$Sex)
-independentSamplesTTest(
-  formula = Height~Sex, #formula specifying outcome and group variables
-  data = subset.mydata, #dataframe
-  var.equal = TRUE,     #assume that the two groups have the same variance  
-)
 ###############################################
 
 #One sample t-test
@@ -66,21 +41,11 @@ oneSampleTTest( x=harpo$grade, mu=70)
 #In-class exercise###
 #Check if the mean height of female students is different from 64
 
-rm(list = ls()); 
-cat("\014")
-mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020.csv";
-mydata <- read.csv(mypath,header=TRUE); 
-
-mydata <- read.csv(mypath,header=TRUE); 
-
-height.female <- mydata$Height[mydata$Sex=="F"]
-oneSampleTTest( x=height.female, mu=64)
 ####################
 
 
 
 #Pairwise and posthocpairwise T test
-
 rm(list = ls()); # clear workspace variables
 cat("\014") # it means ctrl+L. clear window
 
@@ -112,31 +77,4 @@ posthocPairwiseT( my.anova,   # for Holm correction (default)
 #1.-Compare heart rate of female and male students
 #2.-Check if the mean heart rate of male students is different from 65
 
-
-rm(list = ls()); 
-cat("\014")
-
-mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_6_Discussion/All_Data_2020.csv";
-mydata <- read.csv(mypath,header=TRUE); 
-
-
-#QUESTION 1
-HR.female <- mydata$HR[mydata$Sex=="F"]
-HR.male <- mydata$HR[mydata$Sex=="M"]
-#Get subset of data
-
-subset.mydata <- mydata[,c("Sex","HR")]  
-subset.mydata$Sex <- factor(subset.mydata$Sex)
-
-independentSamplesTTest(
-  formula = HR~Sex, #formula specifying outcome and group variables
-  data = subset.mydata,          #dataframe
-  var.equal = TRUE,      #assume that the two groups have the same variance  
-)
-
-#QUESTION 2
-HR.male <- mydata$HR[mydata$Sex=="M"]
-oneSampleTTest( x=HR.male, mu=65)
-
 #################################################
-
