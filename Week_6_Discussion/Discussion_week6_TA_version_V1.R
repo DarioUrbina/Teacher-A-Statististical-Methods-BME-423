@@ -88,7 +88,7 @@ cat("\014") # it means ctrl+L. clear window
 mypath = "C:/Users/dario/Documents/Github/Teacher-A-Statististical-Methods-BME-423/Week_4_Discussion/week4 materials/week4 materials/clinicaltrial.Rdata";
 
 load(mypath)
-View(clin.trial)
+#View(clin.trial)
 #Run the ANOVA test again:
 my.anova <- aov( mood.gain ~ drug, clin.trial ) 
 summary(my.anova )
@@ -96,7 +96,8 @@ library(lsr)
 
 pairwise.t.test( x = clin.trial$mood.gain, # outcome variable
                  g = clin.trial$drug, # grouping variable
-                 p.adjust.method = "none" # which correction to use?- NOT IMPORTANT
+                 #p.adjust.method = "none" # which correction to use?- NOT IMPORTANT
+                 p.adjust.method = "bonferroni"
 )
 
 #Can we run it directly using the my.anova variable we previously created? Yes

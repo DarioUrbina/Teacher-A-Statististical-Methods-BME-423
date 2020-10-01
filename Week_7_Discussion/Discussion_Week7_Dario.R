@@ -2,8 +2,8 @@
 #GOF tests if the observed data fits a certain distribution (probability)
 #Modify cards to one column
 
-rm(list = ls()); # clear workspace variables
-cat("\014")  # it means ctrl+L. clear window
+rm(list = ls());          # clear workspace variables
+cat("\014")               # it means ctrl+L. clear window
 
 setwd("~/Github/Teacher-A-Statististical-Methods-BME-423/Week_7_Discussion")
 
@@ -11,16 +11,6 @@ load("randomness.Rdata")
 library(lsr)
 who(expand = TRUE)
 head(cards[,c(1,2)])      #1st selection
-
-#DUM commented 
-#TotalSelections <- 200    #200 subjects
-
-#H0 <- 'All four suits are chosen with equal probability (Prob=0.25)'
-#H1 <- 'All four suits are chosen with unequal probability (Prob~=0.25)'
-
-#expected <- 200*c(clubs = 0.25, diamonds = 0.25, hearts= 0.25, spades= 0.25)
-#print(expected)
-
 
 observed <- table(cards[,2])      #observed selections from the data (second column)
 print(observed)
@@ -33,12 +23,12 @@ print(observed)
 
 chisq.test(table(cards[,2]))
 # or we can use the Convenience function (goodnessOfFitTest)
-#library(lsr)
+
 goodnessOfFitTest(cards[,2])          #Input is the second column of cards
 
 #---------------------------------Chi-square association test-------------------------------
 #Association btw nominal variables
-#setwd("~/Desktop/Week_7_materials")
+
 load("chapek9.Rdata")
 
 #About the chapek9 data
@@ -59,15 +49,15 @@ chisq.test(table(chapek9))
 
 
 #In-class exercise
-#setwd("~/Desktop/Week_7_materials")
+
 load("gastroData.Rdata")
 head(gastroData)
 gastroData$Gastroenteritis=factor(gastroData$Gastroenteritis)
 gastroData$Consumption=factor(gastroData$Consumption)
 mydataFrequencies <- xtabs(~ Gastroenteritis + Consumption, data = gastroData)
 chisq.test(mydataFrequencies)
-# or we can use the Convenience function (associationTest)
-#library(lsr)
+# or we can use the Convenience function (associationTest) from: library(lsr)
+
 associationTest( formula = ~ Gastroenteritis + Consumption, data = gastroData)
 
 
