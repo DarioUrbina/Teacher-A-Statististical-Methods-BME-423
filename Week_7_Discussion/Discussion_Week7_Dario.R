@@ -12,8 +12,11 @@ library(lsr)
 who(expand = TRUE)
 head(cards[,c(1,2)])      #1st selection
 
-observed <- table(cards[,2])      #observed selections from the data (second column)
+observed <- table(cards[,2])      #observed selections from the data (second column) 
+                                  #contingency table of the counts at each combination of factor levels.
 print(observed)
+observed["diamonds"]
+observed[2]
 
 #We want to test the difference between the expected probability and the observed probability
 #To determine that the difference is not due to chance, we use chi-square goodness of fit test
@@ -21,7 +24,14 @@ print(observed)
 #Let's do the test by setting the significance level = 0.05
 #Go back to slide no. 17 at before using the function
 
+#expected <- 200*c(clubs = 0.25, diamonds = 0.25, hearts= 0.25, spades= 0.25)
+
+#chisq.test(table(cards[,2]),p=c(0.40,0.10,0.25,0.25))
 chisq.test(table(cards[,2]))
+
+
+##############################################################################################
+
 # or we can use the Convenience function (goodnessOfFitTest)
 
 goodnessOfFitTest(cards[,2])          #Input is the second column of cards
@@ -34,7 +44,7 @@ load("chapek9.Rdata")
 #About the chapek9 data
 who(TRUE)
 head(chapek9)
-summary(chapek9)
+summary(chapek9)    #one way to show the summary of the data in this data frame
 
 
 associationTest( formula = ~choice+species, data = chapek9)
@@ -43,7 +53,8 @@ associationTest( formula = ~choice+species, data = chapek9)
 chapekFrequencies <- xtabs(~choice+species,data=chapek9) #create a contingency table
 print(chapekFrequencies)
 chisq.test(chapekFrequencies)
-chisq.test(table(chapek9))
+chisq.test(table(chapek9))    #DUM: same result as previous line!!
+
 #To gain access to the capital city, a visitor must prove that they're not a robot, not a human.
 #They ask whether the visitor prefers puppies, flowers or data files.
 
@@ -52,14 +63,25 @@ chisq.test(table(chapek9))
 
 load("gastroData.Rdata")
 head(gastroData)
-gastroData$Gastroenteritis=factor(gastroData$Gastroenteritis)
-gastroData$Consumption=factor(gastroData$Consumption)
+gastroData$Gastroenteritis=factor(gastroData$Gastroenteritis)  #to make data into factors 
+gastroData$Consumption=factor(gastroData$Consumption)           #to make data into factors
 mydataFrequencies <- xtabs(~ Gastroenteritis + Consumption, data = gastroData)
 chisq.test(mydataFrequencies)
 # or we can use the Convenience function (associationTest) from: library(lsr)
 
 associationTest( formula = ~ Gastroenteritis + Consumption, data = gastroData)
 
+
+##################
+
+#
+#
+#
+#
+#
+#
+!
+  
 
 A = matrix( 
   c(13, 15, 30, 13, 44, 65), # the data elements 
@@ -73,6 +95,7 @@ all = sum(A)
 row_p = r/all
 col_p = c/all
 
+##########
 matrix(col_p)%*%t(matrix(r))
 matrix(c)%*%t(matrix(row_p))
 
