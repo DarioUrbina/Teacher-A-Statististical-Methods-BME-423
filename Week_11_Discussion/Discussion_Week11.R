@@ -8,7 +8,7 @@ graphics.off() # close all plots
 
 
 #In-class Exercise : Multiple linear regression
-mypath = "/Users/amtoey/Dropbox/BME423 TA folder/Regression data refs/BP_Child_Age_Wght_v2.csv";
+mypath = "~/Github/Teacher-A-Statististical-Methods-BME-423/Regression data refs/BP_Child_Age_Wght_v2.csv";
 infant.data <- read.csv(mypath,header=TRUE,sep=",")
 
 
@@ -87,8 +87,7 @@ print(s_b1) #standard error of b1
 
 
 #Revisit from last week
-mypath <- "/Users/gunceezgicinay/Desktop/BME423R/martians.csv"
-mypath <- "/Users/amtoey/Dropbox/BME423 TA folder/Tentative Discussion Slides/Week10/martians.csv"
+mypath <- "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_10_Discussion/martians.csv"
 mydata <- read.csv(mypath,header=TRUE)
 
 plot(mydata$Height, mydata$Weight,ylab="Weight",xlab="Height")
