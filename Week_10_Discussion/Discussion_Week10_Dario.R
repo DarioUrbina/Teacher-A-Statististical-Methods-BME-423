@@ -15,7 +15,7 @@ graphics.off() # close all plots
 #Plot the line on the data
 #5.- Provide a 95% CI of the slope and intercept
 
-#1.- Find the linear regression line properties (slope and intercept, 
+# 1.- Find the linear regression line properties (slope and intercept, 
 # 2.- residual error, 
 # 3.- Standard error of slope and intercept)
 # 4.- Find the correlation of the data
@@ -33,10 +33,14 @@ confint(regression.1, level=0.95)
 plot(mydata$Height, mydata$Weight,ylab="Weight",xlab="Height")
 #Plotting the regression line
 abline(regression.1)
+
+# 8 .- What is the correlation coefficient between height and weight
 cor( mydata$Height, mydata$Weight )
-K<-data.frame(Height=c(35, 40, 45))         #DUM check the function of this##############
+
+K<-data.frame(Height=c(35, 40, 45))         
 K$Weight<-predict(regression.1, newdata=K) # Where K = X coordinate, OPTION = confidence / prediction confidence: Line of Means, prediction: observation
-points(K$Height, K$Weight,ylab="Weight",xlab="Height", col="red")
+points(K$Height, K$Weight,ylab="Weight",xlab="Height", col="red") #DUM adding points to the graph
+
 # Exercise Example: In patients diagnosed with acute dilated
 # cardiomyopathy resulting from myocarditis, examine the
 # relationship between left ventricular ejection fraction (LVEF) and
@@ -49,7 +53,7 @@ points(K$Height, K$Weight,ylab="Weight",xlab="Height", col="red")
 #Find the correlation of the data
 #Provide a 95% CI of the slope and intercept
 
-mypath2 <- "~/Desktop/week10/cardiomyopathy.csv"
+mypath2 <- "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_10_Discussion/cardiomyopathy.csv"
 mydata2 <- read.csv(mypath2,header=TRUE)
 View(mydata2)
 plot(mydata2$Age, mydata2$LVEF, ylim=c(0.05,0.45),xlim=c(18,76),ylab="LVEF",xlab="Age")
@@ -61,10 +65,11 @@ confint(regression.2, level=0.95)
 abline(regression.2)
 
 cor( mydata2$Age, mydata2$LVEF )
+cor.test( mydata2$Age, mydata2$LVEF )
 
 
-# In-class Exercise: In martians.csv, examine the
-# relationship between Weight of the Martian population and their Food Consumption
+# In-class Exercise:  ############################################################ 
+#In martians.csv, examine the relationship between Weight of the Martian population and their Food Consumption
 
 #Load the data
 #Plot a scatter plot of the data
@@ -73,11 +78,12 @@ cor( mydata2$Age, mydata2$LVEF )
 #Find the correlation of the data
 #Provide a 95% CI of the slope and intercept
 
-mypath3 <- "~/Desktop/week10/martians.csv"
+mypath3 <- "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_10_Discussion/martians.csv"
 mydata3 <- read.csv(mypath3,header=TRUE); 
 View(mydata3)
 cat("\014")
 
+#Question 1, 2, 4
 regression.3 <- lm(formula = Weight ~ Food_Consumption, data = mydata3 )
 summary(regression.3)
 coefficients(regression.3)
@@ -88,3 +94,4 @@ plot(mydata3$Food_Consumption, mydata3$Weight,ylab="Weight",xlab="Food_Consumpti
 #Plotting the regression line
 abline(regression.3)
 cor( mydata3$Food_Consumption, mydata3$Weight )
+cor.test( mydata3$Food_Consumption, mydata3$Weight )
