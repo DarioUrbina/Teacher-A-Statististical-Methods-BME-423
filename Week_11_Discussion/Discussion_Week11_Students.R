@@ -27,66 +27,13 @@ plot(x=infant.data$Age.days, y=infant.data$SBPchild,
      cex=2)
 
 #In-class Exercise : Multiple linear regression   ########################################################################################
-
-
-infant.regression <- lm(formula = SBPchild ~ Weight.oz+Age.days,data=infant.data)
-coef(infant.regression)
-
-summary(infant.regression)
-yhat<-predict(infant.regression)
-print(yhat)
-
-
-#Create two separate data frames and predict y 
-#to see how each variable contributes to explaining y
-n=length(infant.data$SBPchild)
-yhat.weight <- predict(infant.regression, newdata=data.frame(Weight.oz=infant.data$Weight.oz,Age.days=rep(0,n)))
-yhat.age <- predict(infant.regression, newdata=data.frame(Weight.oz=rep(0,n),Age.days=infant.data$Age.days))
-
-#Prediction by Weight.oz
-plot(x=infant.data$Weight.oz, y=infant.data$SBPchild,
-     ylab="SBP",
-     xlab="Birthweight",
-     cex=2)
-
-par(new=TRUE)
-plot(x=infant.data$Weight.oz,y=yhat.weight,
-     ylab="SBP",
-     xlab="Birthweight",col="blue",pch=19,cex=2,axes=FALSE) #prediction
-
-#Prediction by Age.days
-plot(x=infant.data$Age.days, y=infant.data$SBPchild,
-     ylab="SBP",
-     xlab="Age",
-     col="black",
-     pch = 19, #solid circle
-     cex=2)
-
-par(new=TRUE)
-plot(x=infant.data$Age.days,y=yhat.age,
-     ylab="SBP",
-     xlab="Age",col="green",
-     pch=19,cex=2,
-     axes=FALSE) #prediction
-
-
-#Residual Standard error (Like Standard Deviation) #################################################################################
-residuals <- infant.data$SBPchild-yhat
-print(residuals)
-print(infant.regression$residuals)
-
-k=length(infant.regression$coefficients)-1 #Subtract one to ignore intercept
-SSE=sum(infant.regression$residuals^2)
-n=length(infant.regression$residuals)
-MSres <- sqrt(SSE/(n-(1+k))) #Residual Standard Error
-
-#Standard error of the slopes #######################################################################################################
-mean.weight <- mean(infant.data$Weight.oz)
-sd.weight <- sqrt(var(infant.data$Weight.oz))
-s_b1 <- (1/sqrt(n-1))*(MSres/sd.weight)
-print(s_b1) #standard error of b1
-
-
+#
+#
+#
+#
+#
+#
+####################################################################################################################
 
 #Revisit from last week #############################################################################################################
 
