@@ -29,19 +29,30 @@ plot(x=infant.data$Age.days, y=infant.data$SBPchild,
 #In-class Exercise : Multiple linear regression   ########################################################################################
 
 
-infant.regression <- lm(formula = SBPchild ~ Weight.oz+Age.days,data=infant.data)
+infant.regression <- lm(formula = SBPchild ~ Weight.oz + Age.days,data=infant.data)  #More than one independent variable:   Weight.oz + Age.days
+summary(infant.regression)
 coef(infant.regression)
 
-summary(infant.regression)
+
 yhat<-predict(infant.regression)
 print(yhat)
 
+#Residual Standard error (Like Standard Deviation) #################################################################################
+residuals <- infant.data$SBPchild - yhat           #residuals manually calculated
+print(residuals)            
+print(infant.regression$residuals)                  #residuals calculated with lm function
+
+k=length(infant.regression$coefficients)-1 #Subtract one to ignore intercept
+SSE=sum(infant.regression$residuals^2)
+n=length(infant.regression$residuals)
+MSres <- sqrt(SSE/(n-(1+k)))                        #Residual Standard Error manually calculated, it is also calculated through lm function
+
 
 #Create two separate data frames and predict y 
-#to see how each variable contributes to explaining y
+#to see how each variable contributes to explaining y  ##############################################################################
 n=length(infant.data$SBPchild)
-yhat.weight <- predict(infant.regression, newdata=data.frame(Weight.oz=infant.data$Weight.oz,Age.days=rep(0,n)))
-yhat.age <- predict(infant.regression, newdata=data.frame(Weight.oz=rep(0,n),Age.days=infant.data$Age.days))
+yhat.weight <- predict(infant.regression, newdata=data.frame (Weight.oz=infant.data$Weight.oz,Age.days=rep(0,n)))
+yhat.age <- predict(infant.regression, newdata=data.frame    (Weight.oz=rep(0,n),Age.days=infant.data$Age.days))
 
 #Prediction by Weight.oz
 plot(x=infant.data$Weight.oz, y=infant.data$SBPchild,
@@ -70,15 +81,7 @@ plot(x=infant.data$Age.days,y=yhat.age,
      axes=FALSE) #prediction
 
 
-#Residual Standard error (Like Standard Deviation) #################################################################################
-residuals <- infant.data$SBPchild-yhat
-print(residuals)
-print(infant.regression$residuals)
 
-k=length(infant.regression$coefficients)-1 #Subtract one to ignore intercept
-SSE=sum(infant.regression$residuals^2)
-n=length(infant.regression$residuals)
-MSres <- sqrt(SSE/(n-(1+k))) #Residual Standard Error
 
 #Standard error of the slopes #######################################################################################################
 mean.weight <- mean(infant.data$Weight.oz)
