@@ -5,7 +5,8 @@ rm(list = ls()); # clear workspace variables
 cat("\014") # it means ctrl+L. clear window
 graphics.off() # close all plots
 
-# In-class exercise
+# In-class exercise 1 ###########################################################
+
 # Example from Navarro - chico.Rdata
 load("~/Github/Teacher-A-Statististical-Methods-BME-423/Week_12_Discussion/chico.Rdata")
 View(chico)
@@ -53,13 +54,15 @@ rm(list = ls()); # clear workspace variables
 cat("\014") # it means ctrl+L. clear window
 graphics.off() # close all plots
 
-#In-class exercise 2
-mypath <- "~/Desktop/Week12/ReactionTime.csv"
+#In-class exercise 2 ############################################################
+
+mypath <- "~/Github/Teacher-A-Statististical-Methods-BME-423/Week_12_Discussion/ReactionTime.csv"
 ReactionTime <- read.csv(mypath,header=TRUE)
 View(ReactionTime)
 head(ReactionTime)
 library(lsr)
 
+#ReactionTime$id <- factor(ReactionTime$id)
 
 #converting the wide form chico data to long form version
 ReactionTime2 <- wideToLong( ReactionTime, within="LiquidConsumption" )
