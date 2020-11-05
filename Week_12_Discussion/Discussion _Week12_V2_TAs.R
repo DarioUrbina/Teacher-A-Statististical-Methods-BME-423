@@ -7,7 +7,7 @@ graphics.off() # close all plots
 
 # In-class exercise
 # Example from Navarro - chico.Rdata
-load("~/Desktop/Week12/chico.Rdata")
+load("~/Github/Teacher-A-Statististical-Methods-BME-423/Week_12_Discussion/chico.Rdata")
 View(chico)
 head(chico)
 
@@ -20,6 +20,9 @@ head(chico)
 hist(x=chico$improvement, xlab="Improvement in Grade")
 library(lsr)
 ciMean(x=chico$improvement)
+ciMean(x=chico$grade_test1)
+ciMean(x=chico$grade_test2)
+
 
 pairedSamplesTTest(
   formula = ~ grade_test2 + grade_test1, # one-sided formula listing the two variables
@@ -36,7 +39,7 @@ pairedSamplesTTest(
   id = "id" # name of the id variable
 )
 
-pt(-6.475, 19)*2
+pt(-6.475, 19)*2   # Student t Distribution 
 #or
 pairedSamplesTTest(
   formula = grade ~ time, # two sided formula: outcome ~ group
@@ -67,6 +70,7 @@ pairedSamplesTTest(
   id = "id" # name of the id variable
 )
 pt(-4.149, 9)*2
+
 #or 
 pairedSamplesTTest(
   formula = RT ~ LiquidConsumption, # two sided formula: outcome ~ group
